@@ -121,27 +121,28 @@
         app:layout_constraintTop_toBottomOf="@+id/grpName" />
 
     <TextView
-        android:id="@+id/color_bar"
-        android:layout_width="45dp"
-        android:layout_height="6dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/blue"
+        android:id="@+id/color_bar_d"
+        android:layout_width="90dp"
+        android:layout_height="5dp"
+        android:layout_marginTop="13dp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/projName" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="lipika.androidapp.gridlayoutadvisor.ProjectDesFragment"
-        android:layout_width="409dp"
-        android:layout_height="460dp"
-        android:layout_marginTop="18dp"
+        android:layout_width="414dp"
+        android:layout_height="511dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/color_bar"
+        app:layout_constraintTop_toBottomOf="@+id/color_bar_d"
+        app:layout_constraintVertical_bias="0.0"
         tools:layout="@layout/fragment_project_detail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

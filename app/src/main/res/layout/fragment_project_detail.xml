@@ -6,56 +6,60 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/projDetail"
-        android:layout_width="353dp"
-        android:layout_height="273dp"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/cabin_semibold"
-        android:lineSpacingExtra="5dp"
-        android:text=" "
-        android:textColor="#666666"
-        android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/divider"
-        android:layout_width="348dp"
-        android:layout_height="3dp"
-        android:layout_marginTop="108dp"
-        android:background="#DDDDDD"
-        android:gravity="center_horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/projDetail" />
+        <TextView
+            android:id="@+id/projDetail"
+            android:layout_width="364dp"
+            android:layout_height="442dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/cabin_semibold"
+            android:lineSpacingExtra="5dp"
+            android:text=" "
+            android:textColor="#666666"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/projectReport"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/cabin_semibold"
-        android:text="Project Report"
-        android:textColor="#222222"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/downloadButton"
-        app:layout_constraintHorizontal_bias="0.153"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        <TextView
+            android:id="@+id/divider"
+            android:layout_width="348dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="18dp"
+            android:background="#DDDDDD"
+            android:gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/projDetail" />
 
-    <ImageButton
-        android:id="@+id/downloadButton"
-        android:layout_width="43dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/circle_button"
-        android:src="@drawable/ic_action_download"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        <TextView
+            android:id="@+id/projectReport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/cabin_semibold"
+            android:text="Project Report"
+            android:textColor="#222222"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/downloadButton"
+            app:layout_constraintHorizontal_bias="0.153"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageButton
+            android:id="@+id/downloadButton"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/circle_button"
+            android:src="@drawable/ic_action_download"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+

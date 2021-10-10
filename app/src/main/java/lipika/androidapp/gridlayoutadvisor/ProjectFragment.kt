@@ -28,20 +28,6 @@ class ProjectFragment: Fragment(){
         return view
     }
 
-//        val studentList = ArrayList<Project>()
-//        studentList.add(Project(ProjectViewAdapter.VIEW_TYPE_ONE, "A case study of the indoor performance of Bluetooth Smart with Raspberry Pi 3", "The Final Fight", "2/2016", "Senior Project 1"))
-//        studentList.add(Project(ProjectViewAdapter.VIEW_TYPE_TWO, "Using data analytics to predict student performance for recommended courses", "Reverse", "2/2016", "Senior Project 2"))
-//        studentList.add(Project(ProjectViewAdapter.VIEW_TYPE_TWO, "Using data analytics to predict student performance for recommended courses", "Reverse", "2/2016", "Senior Project 2"))
-//        studentList.add(Project(ProjectViewAdapter.VIEW_TYPE_ONE, "A case study of the indoor performance of Bluetooth Smart with Raspberry Pi 3", "The Final Fight", "2/2016", "Senior Project 1"))
-//       studentList.add(Project(ProjectViewAdapter.VIEW_TYPE_ONE, "A case study of the indoor performance of Bluetooth Smart with Raspberry Pi 3", "The Final Fight", "2/2016", "Senior Project 1"))
-//
-//        val rv1 = view.findViewById<RecyclerView>(R.id.rv_SP1)
-//        val adapter = ProjectViewAdapter(requireContext(), studentList)
-//        rv1.adapter = adapter
-//        rv1.layoutManager = LinearLayoutManager(requireContext())
-
-
-//    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

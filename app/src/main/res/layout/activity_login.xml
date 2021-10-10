@@ -6,31 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/userProfileImg"
-        android:layout_width="129dp"
-        android:layout_height="115dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="92dp"
-        android:layout_weight="1"
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="207dp"
+        android:layout_height="145dp"
+        android:layout_marginTop="108dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/logo" />
+        app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="96dp"
         android:text="A u I d e a"
         android:textColor="@color/menuColor"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userProfileImg" />
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <View
         android:id="@+id/profileBar"
@@ -63,10 +61,10 @@
         android:layout_width="372dp"
         android:layout_height="3dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="216dp"
+        android:layout_marginTop="168dp"
         android:background="#63BFBFBF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.589"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
 

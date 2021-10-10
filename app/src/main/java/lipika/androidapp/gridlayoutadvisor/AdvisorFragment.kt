@@ -75,21 +75,6 @@ class AdvisorFragment: Fragment() {
         })
     }
 
-//    private fun advisorList() : ArrayList<advisor> {
-//        val advisor=ArrayList<advisor>()
-//        advisor.add(advisor(R.drawable.dobri, "Dr. Dobri Atanassov Batovski", "Asst Prof"))
-//        advisor.add(advisor(R.drawable.tap, "Tapanan Yeophantong", "Asst Prof"))
-//        advisor.add(advisor(R.drawable.anil, "Dr.Anil Kumar GopalKrishna G", "Asst Prof"))
-//        advisor.add(advisor(R.drawable.paitoon, "Paitoon Porntakroon", "Asst Prof"))
-//        advisor.add(advisor(R.drawable.rachsuda, "Rachsuda Sethawong", "Asst Prof"))
-//        advisor.add(advisor(R.drawable.darun, "Darun Kesarat", "Asst Prof"))
-//        advisor.add(advisor(R.drawable.songsak, "Dr. Songsak Channarukul", "Asst Prof"))
-//        advisor.add(advisor(R.drawable.kwan, "Dr. Kwan Nongpong", "Asst Prof"))
-//        advisor.add(advisor(R.drawable.chayapol, "Chayapol Moemeng", "Asst Prof"))
-//        advisor.add(advisor(R.drawable.thanachai, "Dr. Thanachai Thumthawatworn", "Asst prof"))
-//
-//        return advisor
-//    }
 
 
     private inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -1,5 +1,6 @@
 package lipika.androidapp.gridlayoutadvisor
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +16,6 @@ import api.Recommendation
 import api.RecommendationItem
 import kotlinx.android.synthetic.main.activity_recommend.saveRecyclerView
 import kotlinx.android.synthetic.main.item_container_sp1.view.*
-import kotlinx.android.synthetic.main.project_detail.view.color_bar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,12 +30,25 @@ class RecommendActivity : Fragment() {
     private var list: Recommendation = Recommendation()
     private lateinit var listAdapter: ProjectAdapter
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode==Activity.RESULT_OK) {
+            if(data != null){
+                data.getStringArrayExtra("SAVED")?.let{(activity as HomeActivity).saveStorage.add(it)}
+                Log.d("CHECK",data.getStringExtra("SAVED").toString())
+                Log.d("CHECK",(activity as HomeActivity).saveStorage.toString())
+            }
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.activity_recommend,container, false)
+
         return view
     }
 
@@ -44,6 +57,8 @@ class RecommendActivity : Fragment() {
         saveRecyclerView.layoutManager = LinearLayoutManager(activity)
         listAdapter = ProjectAdapter(list)
         saveRecyclerView.adapter = listAdapter
+
+
 
         val retrofit: Retrofit =
             Retrofit.Builder().baseUrl("https://auidea.azurewebsites.net/").addConverterFactory(
@@ -92,8 +107,12 @@ class RecommendActivity : Fragment() {
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, ProjectDetail::class.java)
                 intent.putExtra("p_number", project.projectNo.toString())
+                intent.putExtra("TITLE", project.projectTitle)
+                intent.putExtra("GRP",project.groupName)
+                intent.putExtra("SEM", project.semester)
+                intent.putExtra("TYPE", project.projectType.toString())
                 Log.d("SPARK-API","The project number for this is ${project.projectNo}")
-                startActivity(intent)
+                startActivityForResult(intent,Activity.RESULT_OK)
             }
         }
 

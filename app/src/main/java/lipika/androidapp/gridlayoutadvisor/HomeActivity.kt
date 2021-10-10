@@ -1,9 +1,7 @@
 package lipika.androidapp.gridlayoutadvisor
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -13,6 +11,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_about.*
+import kotlinx.android.synthetic.main.activity_about.color_bar
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_recommend.*
 import kotlinx.android.synthetic.main.activity_recommend.bottom_navigation_view
@@ -31,38 +31,47 @@ import kotlinx.android.synthetic.main.activity_recommend.saveRecyclerView
 import kotlinx.android.synthetic.main.item_container_sp1.view.*
 import kotlinx.android.synthetic.main.item_container_sp2.view.*
 import kotlinx.android.synthetic.main.profile_popup.*
+import kotlinx.android.synthetic.main.project_detail.*
 import kotlinx.android.synthetic.main.project_detail.view.*
-import kotlinx.android.synthetic.main.project_detail.view.color_bar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.io.Serializable
 
 private const val REQUEST_CODE=102
 private const val REQUEST_CODE1=103
 private const val REQUEST_CODE_SECONDACT=101
+const val FILTER_CODE=110
 private lateinit var auth: FirebaseAuth
-
 
 class HomeActivity : AppCompatActivity() {
 var saveStorage = mutableListOf<Array<String>>()
+
     private companion object{
-        private const val TAG = "LoginActivity"
+        const val TAG = "LoginActivity"
     }
 
-    private var list: ArrayList<HomeProjectItem> = ArrayList<HomeProjectItem>()
     private lateinit var listAdapter: ProjectAdapter
 
     lateinit var toggle: ActionBarDrawerToggle
     private lateinit var auth: FirebaseAuth
 
+    private var list:ArrayList<HomeProjectItem> = ArrayList<HomeProjectItem>()
+    private var filterList:List<HomeProjectItem> = emptyList()
+    private var saveFilter= arrayOf("-1","-1")
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode!= Activity.RESULT_OK){
-            return
+        if (requestCode== FILTER_CODE) {
+            val b = data?.extras
+            saveFilter = b!!.getStringArray("DATA") as Array<String>
+            filterList=list
+            if ( saveFilter ?.get(0) ?:"-1" !="-1") filterList=filterList.filter { it.projectType ==  saveFilter ?.get(0)?.toInt() ?: -1 }
+            if ( saveFilter ?.get(1) ?:"-1" !="-1") filterList=filterList.filter { it.semester ==  saveFilter ?.get(1)}
+            listAdapter.setData(filterList)
         }
+
         if (requestCode == REQUEST_CODE_SECONDACT){
             if(data != null){
                 data.getStringArrayExtra("SAVED")?.let{saveStorage.add(it)}
@@ -102,6 +111,7 @@ var saveStorage = mutableListOf<Array<String>>()
                 var projectResponse = response.body()
                 if (projectResponse != null) {
                     listAdapter.setData(projectResponse)
+                    list=projectResponse
                     Log.d("SPARK-API", projectResponse.toString())
                 }
             }
@@ -111,7 +121,7 @@ var saveStorage = mutableListOf<Array<String>>()
             }
         })
 
-        //Save image intent
+        //Fav intent
         val save: ImageView = findViewById(R.id.savedIcon)
         save.setOnClickListener {
             Log.d("MENU","Favourite")
@@ -124,9 +134,11 @@ var saveStorage = mutableListOf<Array<String>>()
         val filter: ImageView = findViewById(R.id.filterIcon)
         filter.setOnClickListener {
             val intent = Intent(this, FilterActivity::class.java)
-            startActivity(intent)
+            val b = Bundle()
+            b.putStringArray("DATA", saveFilter)
+            intent.putExtras(b)
+            startActivityForResult(intent, FILTER_CODE)
         }
-
 
         //About button intent
         val button: ImageButton = findViewById(R.id.aboutButton)
@@ -134,17 +146,6 @@ var saveStorage = mutableListOf<Array<String>>()
             val intent = Intent(this, AboutActivity::class.java)
             startActivity(intent)
         }
-        //Logout
-//       val btn_logout = findViewById(R.id.logoutButton) as Button
-//        btn_logout.setOnClickListener {
-//            Log.i(TAG, "Logout")
-//                auth.signOut()
-//                val logoutIntent = Intent(this, LoginActivity::class.java)
-//                logoutIntent.flags =
-//                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                startActivity(logoutIntent)
-//                finish()
-//        }
     }
 
 
@@ -205,9 +206,12 @@ var saveStorage = mutableListOf<Array<String>>()
                 val intent = Intent(itemView.context, ProjectDetail::class.java)
 
                 intent.putExtra("p_number", project.projectNo.toString())
-                intent.putExtra("TITLE", project.projectTitle.toString())
-                intent.putExtra("SEM", project.semester.toString())
+                intent.putExtra("TITLE", project.projectTitle)
+                intent.putExtra("GRP",project.groupName)
+                intent.putExtra("SEM", project.semester)
                 intent.putExtra("TYPE", project.projectType.toString())
+
+
                 Log.d("SPARK-API","Working ${project.projectNo}")
                 startActivityForResult(intent, REQUEST_CODE_SECONDACT)
             }

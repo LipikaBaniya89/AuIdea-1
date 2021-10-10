@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E6FFFFFF">
+    android:background="#F3FBFBFB">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/profileCard"
-        android:layout_width="267dp"
-        android:layout_height="318dp"
+        android:layout_width="304dp"
+        android:layout_height="352dp"
         android:background="#FFFFFF"
-        app:cardCornerRadius="10dp"
+        app:elevation="10dp"
+        app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,8 +20,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/userProfileImg"
-            android:layout_width="86dp"
-            android:layout_height="79dp"
+            android:layout_width="112dp"
+            android:layout_height="105dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="35dp"
             android:layout_weight="1"
@@ -32,37 +33,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="150dp"
             android:text="ABCD EFGH"
             android:textColor="@color/menuColor"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/userAuId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="150dp"
-            android:text="0000000"
-            android:textColor="#80222222"
-            android:textSize="11dp" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/userEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="170dp"
+            android:layout_marginTop="190dp"
             android:text="u000000@au.edu"
-            android:textColor="#80222222"
-            android:textSize="11dp" />
+            android:textColor="#801B1B1B"
+            android:textSize="15dp" />
 
         <View
             android:id="@+id/profileBar"
             android:layout_width="35dp"
             android:layout_height="8dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="220dp"
             android:background="@drawable/gradient_drawable" />
 
         <Button

@@ -1,5 +1,6 @@
 package lipika.androidapp.gridlayoutadvisor
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import api.AllApi
 import api.HomeProject
 import api.ProjectResponse
 import kotlinx.android.synthetic.main.fragment_project_detail.*
+import kotlinx.android.synthetic.main.fragment_project_detail.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,6 +25,8 @@ class ProjectDesFragment: Fragment() {
 
     var param1=""
 
+    var mydownloadid : Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,7 +34,6 @@ class ProjectDesFragment: Fragment() {
             param1 = it.getString(ARG_PARAM1).toString()
         }
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,8 +65,13 @@ class ProjectDesFragment: Fragment() {
             }
         })
 
-        return view
+        view.downloadButton.setOnClickListener{
+            Log.d("logout clicked", "Selected")
+            val intent = Intent(activity, ProjectDetail::class.java)
+            startActivity(intent)
+        }
 
+        return view
 
     }
 

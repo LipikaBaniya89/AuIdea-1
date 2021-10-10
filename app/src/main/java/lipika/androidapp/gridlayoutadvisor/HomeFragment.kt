@@ -1,11 +1,13 @@
 package lipika.androidapp.gridlayoutadvisor
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,7 +15,10 @@ import androidx.recyclerview.widget.RecyclerView
 import api.AllApi
 import api.HomeProject
 import api.HomeProjectItem
+import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_home.view.*
 import kotlinx.android.synthetic.main.activity_recommend.*
+import kotlinx.android.synthetic.main.activity_recommend.saveRecyclerView
 import kotlinx.android.synthetic.main.item_container_sp1.view.*
 import kotlinx.android.synthetic.main.item_container_sp1.view.color_bar
 import retrofit2.Call
@@ -24,10 +29,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 private const val REQUEST_CODE=102
 private const val REQUEST_CODE1=103
+const val FILTER_CODE_FRAGMENT=110
+private const val REQUEST_CODE_SECONDACT=101
 
 class HomeFragment: Fragment() {
+    var saveStorage = mutableListOf<Array<String>>()
 
-    private var list: HomeProject = HomeProject()
     private lateinit var listAdapter: ProjectAdapter
 
     override fun onCreateView(
@@ -36,6 +43,13 @@ class HomeFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.activity_home,container, false)
+
+        //Filter button intent
+        view.filterIcon.setOnClickListener {
+            val intent = Intent(activity, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
         return view
     }
 
@@ -43,7 +57,7 @@ class HomeFragment: Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         saveRecyclerView.layoutManager = LinearLayoutManager(activity)
-        listAdapter = ProjectAdapter(list)
+        listAdapter = ProjectAdapter(emptyList())
         saveRecyclerView.adapter = listAdapter
 
         val retrofit: Retrofit =
@@ -70,6 +84,7 @@ class HomeFragment: Fragment() {
             }
         })
 
+
     }
 
     private inner class View1Holder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -89,13 +104,16 @@ class HomeFragment: Fragment() {
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, ProjectDetail::class.java)
                 intent.putExtra("p_number", project.projectNo.toString())
-                Log.d("SPARK-API","ABCD ${project.projectNo}")
-                startActivity(intent)
+                intent.putExtra("TITLE", project.projectTitle.toString())
+                intent.putExtra("SEM", project.semester.toString())
+                intent.putExtra("TYPE", project.projectType.toString())
+                Log.d("SPARK-API","Working ${project.projectNo}")
+                startActivityForResult(intent, Activity.RESULT_OK)
             }
         }
     }
 
-    private inner class ProjectAdapter(var projects: HomeProject):
+    private inner class ProjectAdapter(var projects: List<HomeProjectItem>):
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         var seniorProject1=1
         var seniorProject2=2
@@ -134,7 +152,7 @@ class HomeFragment: Fragment() {
             }
         }
 
-        fun setData(project: HomeProject) {
+        fun setData(project: List<HomeProjectItem>) {
             projects = project
             notifyDataSetChanged()
         }
