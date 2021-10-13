@@ -35,7 +35,6 @@ class ProjectDetail : AppCompatActivity() {
         setContentView(R.layout.project_detail)
 
 
-
         //        Download Manager
         var request = DownloadManager.Request(
             Uri.parse("https://atmiyauni.ac.in/wp-content/uploads/2020/04/AU-Brochure-update-March-2020.pdf"))

@@ -16,5 +16,9 @@
         <item name="colorPrimary">@color/menuColor</item>
 
         <item name="android:textAllCaps">false</item>
+
+
+        <item name="android:statusBarColor">@color/statusbar</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>

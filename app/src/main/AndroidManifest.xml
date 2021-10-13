@@ -16,9 +16,10 @@
         <activity android:name=".AboutActivity" />
         <activity android:name=".SecondActivity" />
         <activity android:name=".FilterActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".HomeActivity">
-<!--        <activity android:name=".LoginActivity" >-->
+        <activity android:name=".ProfileActivity"/>
+<!--        <activity android:name=".LoginActivity" />-->
+        <activity android:name=".HomeActivity"/>
+        <activity android:name=".LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

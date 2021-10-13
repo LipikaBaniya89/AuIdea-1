@@ -67,8 +67,8 @@ class ProjectDesFragment: Fragment() {
 
         view.downloadButton.setOnClickListener{
             Log.d("logout clicked", "Selected")
-            val intent = Intent(activity, ProjectDetail::class.java)
-            startActivity(intent)
+//            val intent = Intent(activity, ProjectDetail::class.java)
+//            startActivity(intent)
         }
 
         return view

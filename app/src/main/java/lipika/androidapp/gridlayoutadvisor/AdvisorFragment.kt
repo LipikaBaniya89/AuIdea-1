@@ -12,9 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import api.AdvisorResponse
-import api.AdvisorResponseItem
-import api.AllApi
+import api.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.advisor_grid.*
@@ -30,7 +28,7 @@ private const val REQUESTCODE=101
 
 class AdvisorFragment: Fragment() {
 
-    private var advisorList: AdvisorResponse = AdvisorResponse()
+    private var advisorList: AdvisorSpecialtyResponse = AdvisorSpecialtyResponse()
     private lateinit var recyclerAdapter: RecyclerViewAdapter
 
     override fun onCreateView(
@@ -58,10 +56,10 @@ class AdvisorFragment: Fragment() {
         val Api: AllApi = retrofit.create(AllApi::class.java)
 
 //        Get Advisor Recycler
-        val getProjectRequest: Call<AdvisorResponse> = Api.getAdvisor()
-        getProjectRequest.enqueue(object : Callback<AdvisorResponse> {
+        val getAdvisorRequest: Call<AdvisorSpecialtyResponse> = Api.getAdvisorSpecialty()
+        getAdvisorRequest.enqueue(object : Callback<AdvisorSpecialtyResponse> {
 
-            override fun onResponse(call: Call<AdvisorResponse>, response: Response<AdvisorResponse>) {
+            override fun onResponse(call: Call<AdvisorSpecialtyResponse>, response: Response<AdvisorSpecialtyResponse>) {
                 var advisorResponse = response.body()
                 if (advisorResponse != null) {
                     recyclerAdapter.setData(advisorResponse)
@@ -69,7 +67,7 @@ class AdvisorFragment: Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<AdvisorResponse>, t: Throwable) {
+            override fun onFailure(call: Call<AdvisorSpecialtyResponse>, t: Throwable) {
                 Log.d("SPARK-API", "Failed to Request!")
             }
         })
@@ -82,9 +80,9 @@ class AdvisorFragment: Fragment() {
         var image: ImageView = itemView.findViewById(R.id.imageView)
         var name: TextView = itemView.findViewById(R.id.advisorName)
 
-        lateinit var advisor: AdvisorResponseItem
+        lateinit var advisor: AdvisorSpecialtyResponseItem
 
-        fun bind(advisor: AdvisorResponseItem) {
+        fun bind(advisor: AdvisorSpecialtyResponseItem) {
             this.advisor = advisor
             Picasso.get().load(advisor.advisorImage).into(image)
             name.text = (advisor.advisorName)
@@ -100,7 +98,7 @@ class AdvisorFragment: Fragment() {
         }
     }
 
-    private inner class RecyclerViewAdapter(var advisors: AdvisorResponse) :
+    private inner class RecyclerViewAdapter(var advisors: List<AdvisorSpecialtyResponseItem>) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         override fun onCreateViewHolder(
             parent: ViewGroup,
@@ -119,7 +117,7 @@ class AdvisorFragment: Fragment() {
             return advisors.size
         }
 
-        fun setData(advisor: AdvisorResponse) {
+        fun setData(advisor: List<AdvisorSpecialtyResponseItem>) {
             advisors = advisor
             notifyDataSetChanged()
         }

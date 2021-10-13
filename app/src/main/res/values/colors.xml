@@ -16,6 +16,7 @@
     <color name="colorPrimaryLight">#40222222</color>
     <color name="SP1">#025F78</color>
     <color name="SP2">#AE502A</color>
+    <color name="statusbar">#222222</color>
 
     <color name="homeFragment">#FFFFFF</color>
     <color name="advisorFragment">#FFFFFF</color>

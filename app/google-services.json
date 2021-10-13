@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "535117097411-vmbcr4rkq1q4ki20vmdv2cgafmdgvo7b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "lipika.androidapp.gridlayoutadvisor",
+            "certificate_hash": "bec26ce23eaa818f021c6d5b874bd7f05a370a81"
+          }
+        },
+        {
           "client_id": "535117097411-vnai2ju4nj166097id2k5sjo4v6fctqv.apps.googleusercontent.com",
           "client_type": 3
         }

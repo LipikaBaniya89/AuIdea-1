@@ -7,19 +7,19 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-        <TextView
-            android:id="@+id/projDetail"
-            android:layout_width="364dp"
-            android:layout_height="442dp"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/cabin_semibold"
-            android:lineSpacingExtra="5dp"
-            android:text=" "
-            android:textColor="#666666"
-            android:textSize="18dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/projDetail"
+        android:layout_width="335dp"
+        android:layout_height="374dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/cabin_semibold"
+        android:lineSpacingExtra="5dp"
+        android:text=" "
+        android:textColor="#666666"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/divider"
