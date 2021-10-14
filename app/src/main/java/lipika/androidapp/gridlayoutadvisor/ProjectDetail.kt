@@ -50,11 +50,7 @@ class ProjectDetail : AppCompatActivity() {
             override fun onReceive(p0: Context?, p1: Intent?) {
                 var id = p1?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
                 if (id == mydownloadid) {
-                    Toast.makeText(
-                        applicationContext,
-                        "Download Completed",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    Toast.makeText(this@ProjectDetail, "Download Completed", Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -67,7 +63,6 @@ class ProjectDetail : AppCompatActivity() {
         var semes = intent.getStringExtra("SEM")
         var type = intent.getStringExtra("TYPE")
 
-
         val retrofit: Retrofit =
             Retrofit.Builder().baseUrl("https://auidea.azurewebsites.net/").addConverterFactory(
                 GsonConverterFactory.create()
@@ -75,6 +70,13 @@ class ProjectDetail : AppCompatActivity() {
 
         val Api: AllApi = retrofit.create(AllApi::class.java)
         val projectNumber = intent.getStringExtra("p_number")
+
+        val project_detail = ProjectDesFragment.newInstance(projectNumber.toString())
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView, project_detail).commit()
+            description.setTextColor(resources.getColor(R.color.menuColor))
+            team.setTextColor(resources.getColor(R.color.colorPrimaryLight))
+
 
 
 
@@ -112,11 +114,11 @@ class ProjectDetail : AppCompatActivity() {
                 Log.d("SPARK-API", "Failed to Request!")
             }
 
-
         })
 
         val project = arrayOf(title,name,semes,type)
         savedProj.setOnClickListener{
+            Toast.makeText(this,"The project has been saved!",Toast.LENGTH_SHORT).show()
             val intent2 = Intent()
             intent2.putExtra("SAVED", project)
             Log.d("CHECK",project[0].toString())

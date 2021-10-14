@@ -6,7 +6,6 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface AllApi {
-
     @GET("api/recommendation/projectdetail")
     fun getProject(@Query("projectNo") p_number:String):Call<ProjectResponse>
 
@@ -18,11 +17,11 @@ interface AllApi {
 
     @GET("api/recommendation/search")
     fun getHomeProject():Call<HomeProject>
+    
 
-    @GET("api/recommendation/advisordetail")
-    fun getAdvisorProject():Call<AdvisorProjectResponse>
+    @GET("api/recommendation/advisordetailall")
+    fun getAdvisorProject(@Query("advisorNo") a_number: String):Call<AdvisorProjectResponse>
 
     @GET("api/recommendation/advisorspecialty")
-    fun getAdvisorSpecialty():Call<AdvisorSpecialtyResponse>
-
+    fun getAdvisor():Call<AdvisorResponse>
 }

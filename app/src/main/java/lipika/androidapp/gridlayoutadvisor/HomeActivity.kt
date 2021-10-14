@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import api.AllApi
@@ -45,7 +46,7 @@ private const val REQUEST_CODE_SECONDACT=101
 const val FILTER_CODE=110
 private lateinit var auth: FirebaseAuth
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(){
 var saveStorage = mutableListOf<Array<String>>()
 
     private companion object{
@@ -75,10 +76,10 @@ var saveStorage = mutableListOf<Array<String>>()
         if (requestCode == REQUEST_CODE_SECONDACT){
             if(data != null){
                 data.getStringArrayExtra("SAVED")?.let{saveStorage.add(it)}
-                Log.d("CHECK",saveStorage.toString())
             }
         }
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -164,7 +165,7 @@ var saveStorage = mutableListOf<Array<String>>()
             }
 
             R.id.recommendActivity -> {
-                replaceFragment(RecommendActivity())
+                replaceFragment(RecommendFragment())
                 return@OnNavigationItemSelectedListener true
             }
 

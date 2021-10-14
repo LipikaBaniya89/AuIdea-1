@@ -28,7 +28,7 @@ private const val REQUESTCODE=101
 
 class AdvisorFragment: Fragment() {
 
-    private var advisorList: AdvisorSpecialtyResponse = AdvisorSpecialtyResponse()
+    private var advisorList: AdvisorResponse = AdvisorResponse()
     private lateinit var recyclerAdapter: RecyclerViewAdapter
 
     override fun onCreateView(
@@ -56,10 +56,10 @@ class AdvisorFragment: Fragment() {
         val Api: AllApi = retrofit.create(AllApi::class.java)
 
 //        Get Advisor Recycler
-        val getAdvisorRequest: Call<AdvisorSpecialtyResponse> = Api.getAdvisorSpecialty()
-        getAdvisorRequest.enqueue(object : Callback<AdvisorSpecialtyResponse> {
+        val getAdvisorRequest: Call<AdvisorResponse> = Api.getAdvisor()
+        getAdvisorRequest.enqueue(object : Callback<AdvisorResponse> {
 
-            override fun onResponse(call: Call<AdvisorSpecialtyResponse>, response: Response<AdvisorSpecialtyResponse>) {
+            override fun onResponse(call: Call<AdvisorResponse>, response: Response<AdvisorResponse>) {
                 var advisorResponse = response.body()
                 if (advisorResponse != null) {
                     recyclerAdapter.setData(advisorResponse)
@@ -67,7 +67,7 @@ class AdvisorFragment: Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<AdvisorSpecialtyResponse>, t: Throwable) {
+            override fun onFailure(call: Call<AdvisorResponse>, t: Throwable) {
                 Log.d("SPARK-API", "Failed to Request!")
             }
         })
@@ -80,25 +80,28 @@ class AdvisorFragment: Fragment() {
         var image: ImageView = itemView.findViewById(R.id.imageView)
         var name: TextView = itemView.findViewById(R.id.advisorName)
 
-        lateinit var advisor: AdvisorSpecialtyResponseItem
+        lateinit var advisor: AdvisorResponseItem
 
-        fun bind(advisor: AdvisorSpecialtyResponseItem) {
+        fun bind(advisor: AdvisorResponseItem) {
             this.advisor = advisor
             Picasso.get().load(advisor.advisorImage).into(image)
             name.text = (advisor.advisorName)
+            val specialList=advisor.advisorSpecialty.map { it.specialty }.joinToString("/")
 
             itemView.viewAdvisorButtonGrid.setOnClickListener {
                 val intent = Intent(viewAdvisorButtonGrid.context, SecondActivity::class.java)
+                intent.putExtra("a_number",advisor.advisorId)
+                intent.putExtra("special",specialList)
                 intent.putExtra("image",advisor.advisorImage)
                 intent.putExtra("name",advisor.advisorName)
-                Log.d("SPARK-API","ABCD ${advisor.advisorId}")
+                Log.d("ADVISOR","ABCD ${advisor.advisorId}")
 
                 startActivityForResult(intent, REQUESTCODE)
             }
         }
     }
 
-    private inner class RecyclerViewAdapter(var advisors: List<AdvisorSpecialtyResponseItem>) :
+    private inner class RecyclerViewAdapter(var advisors: List<AdvisorResponseItem>) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         override fun onCreateViewHolder(
             parent: ViewGroup,
@@ -117,7 +120,7 @@ class AdvisorFragment: Fragment() {
             return advisors.size
         }
 
-        fun setData(advisor: List<AdvisorSpecialtyResponseItem>) {
+        fun setData(advisor: List<AdvisorResponseItem>) {
             advisors = advisor
             notifyDataSetChanged()
         }

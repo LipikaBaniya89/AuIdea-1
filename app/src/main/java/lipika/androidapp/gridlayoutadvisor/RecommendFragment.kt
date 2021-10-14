@@ -25,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 private const val REQUEST_CODE=102
 private const val REQUEST_CODE1=103
 
-class RecommendActivity : Fragment() {
+class RecommendFragment : Fragment() {
 
     private var list: Recommendation = Recommendation()
     private lateinit var listAdapter: ProjectAdapter
@@ -36,8 +36,6 @@ class RecommendActivity : Fragment() {
         if (requestCode==Activity.RESULT_OK) {
             if(data != null){
                 data.getStringArrayExtra("SAVED")?.let{(activity as HomeActivity).saveStorage.add(it)}
-                Log.d("CHECK",data.getStringExtra("SAVED").toString())
-                Log.d("CHECK",(activity as HomeActivity).saveStorage.toString())
             }
         }
     }
@@ -57,7 +55,6 @@ class RecommendActivity : Fragment() {
         saveRecyclerView.layoutManager = LinearLayoutManager(activity)
         listAdapter = ProjectAdapter(list)
         saveRecyclerView.adapter = listAdapter
-
 
 
         val retrofit: Retrofit =

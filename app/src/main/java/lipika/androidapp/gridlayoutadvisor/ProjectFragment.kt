@@ -1,7 +1,9 @@
 package lipika.androidapp.gridlayoutadvisor
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,15 +11,46 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import api.AdvisorProjectResponse
+import api.AdvisorProjectResponseItem
+import api.AllApi
 import kotlinx.android.synthetic.main.fragment_advisor_project.*
+import kotlinx.android.synthetic.main.item_container_sp1.view.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
 
 private const val REQUEST_CODE11=100
 private const val REQUEST_CODE22=101
 
-class ProjectFragment: Fragment(){
+private const val ARG_PARAM1 = "param1"
 
-    private var list = sampleProject()
-    private lateinit var listAdapter: ProjectFragment.ProjectAdapter
+class ProjectFragment: Fragment(){
+    var param1=""
+
+    private lateinit var listAdapter: ProjectAdvisorAdapter
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode==Activity.RESULT_OK) {
+            if(data != null){
+                data.getStringArrayExtra("SAVED")?.let{(activity as HomeActivity).saveStorage.add(it)}
+                Log.d("CHECK",data.getStringExtra("SAVED").toString())
+                Log.d("CHECK",(activity as HomeActivity).saveStorage.toString())
+            }
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            param1 = it.getString(ARG_PARAM1).toString()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,102 +65,89 @@ class ProjectFragment: Fragment(){
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         rv_SP1.layoutManager = LinearLayoutManager(activity)
-        listAdapter = ProjectAdapter(list)
+        listAdapter = ProjectAdvisorAdapter(emptyList())
         rv_SP1.adapter = listAdapter
 
+        val retrofit: Retrofit =
+            Retrofit.Builder().baseUrl("https://auidea.azurewebsites.net/").addConverterFactory(
+                GsonConverterFactory.create()
+            ).build()
+
+        val Api: AllApi = retrofit.create(AllApi::class.java)
+
+
+//        Get Project Description
+        val getAdvisorRequest: Call<AdvisorProjectResponse> = Api.getAdvisorProject(param1.toString())
+        Log.d("ADVISOR PROJECT",param1.toString())
+        getAdvisorRequest.enqueue(object : Callback<AdvisorProjectResponse> {
+
+            override fun onResponse(call: Call<AdvisorProjectResponse>, response: Response<AdvisorProjectResponse>) {
+                var projectResponse = response.body()
+                if (projectResponse!=null) {
+                    listAdapter.setData(projectResponse)
+                    Log.d("ADVISOR PROJECT", projectResponse.toString())
+                }
+            }
+
+            override fun onFailure(call: Call<AdvisorProjectResponse>, t: Throwable) {
+                Log.d("ADVISOR PROJECT","Failed to Request!")
+            }
+        })
+
     }
 
-    private fun sampleProject():ArrayList<Project> {
-        val studentList = ArrayList<Project>()
-        studentList.add(Project(2, "A case study of the indoor performance of Bluetooth Smart with Raspberry Pi 3", "The Final Fight", "2/2016", "Senior Project 1"))
-        studentList.add(Project(2, "Using data analytics to predict student performance for recommended courses", "Reverse", "2/2016", "Senior Project 2"))
-        studentList.add(Project(2, "Using data analytics to predict student performance for recommended courses", "Reverse", "2/2016", "Senior Project 2"))
-        studentList.add(Project(1, "A case study of the indoor performance of Bluetooth Smart with Raspberry Pi 3", "The Final Fight", "2/2016", "Senior Project 1"))
-        studentList.add(Project(1, "A case study of the indoor performance of Bluetooth Smart with Raspberry Pi 3", "The Final Fight", "2/2016", "Senior Project 1"))
 
-        return studentList
-    }
-
-    private inner class View1Holder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener{
+    private inner class AViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         var p_name: TextView = itemView.findViewById(R.id.nameSP1)
         var g_name: TextView = itemView.findViewById(R.id.grpSP1)
         var sem: TextView = itemView.findViewById(R.id.semSP1)
         var type: TextView = itemView.findViewById(R.id.SP1)
 
-        lateinit var project: Project
+        lateinit var project: AdvisorProjectResponseItem
 
-        init {
-            itemView.setOnClickListener(this)
-        }
-
-        fun bind(project:Project){
+        fun bind(project: AdvisorProjectResponseItem){
             this.project=project
-            p_name.text = (project.project_name)
-            g_name.setText(project.group_name)
-            sem.text = (project.semester)
-            type.text = (project.project_no)
+            p_name.text = (project.projTitle)
+            g_name.setText(project.projTeam)
+            sem.setText(project.projSemester)
+            type.text = ("Senior Project " + project.projType.toString())
+            itemView.setOnClickListener {
+                val intent = Intent(itemView.context, ProjectDetail::class.java)
+                intent.putExtra("p_number", project.projNo.toString())
+                intent.putExtra("TITLE", project.projType)
+                intent.putExtra("GRP", project.projTeam)
+                intent.putExtra("SEM", project.projSemester)
+                intent.putExtra("TYPE", project.projType)
+                startActivityForResult(intent, Activity.RESULT_OK)
+            }
         }
 
-        override fun onClick(v: View?) {
-            val intent= Intent (v!!.context, ProjectDetail::class.java)
-            intent.putExtra("p_name",project.project_name)
-            intent.putExtra("g_name",project.group_name)
-            intent.putExtra("sem",project.semester)
-            intent.putExtra("type",project.viewType)
-
-            startActivityForResult(intent, REQUEST_CODE11)
-        }
     }
 
-    private inner class View2Holder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener{
-        var p_name: TextView = itemView.findViewById(R.id.nameSP2)
-        var g_name: TextView = itemView.findViewById(R.id.grpSP2)
-        var sem: TextView = itemView.findViewById(R.id.semSP2)
-        var type: TextView = itemView.findViewById(R.id.SP2)
-
-        lateinit var project: Project
-
-        fun bind(project: Project){
-            p_name.text = (project.project_name)
-            g_name.setText(project.group_name)
-            sem.text = (project.semester)
-            type.text = (project.project_no)
-
-        }
-
-        override fun onClick(v: View?) {
-            val intent= Intent(v!!.context,ProjectDetail::class.java)
-            intent.putExtra("p_name",project.project_name)
-            intent.putExtra("g_name",project.group_name)
-            intent.putExtra("sem",project.semester)
-            intent.putExtra("type",project.viewType)
-
-            startActivityForResult(intent, REQUEST_CODE22)
-        }
-    }
-
-    private inner class ProjectAdapter(var projects:ArrayList<Project>):
+    private inner class ProjectAdvisorAdapter(var projects:List<AdvisorProjectResponseItem>):
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         var seniorProject1 = 1
         var seniorProject2 = 2
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-            if (viewType == seniorProject1) {
-                val View1 = layoutInflater.inflate(R.layout.item_container_sp1, parent, false)
-                return View1Holder(View1)
-            } else {
-                val View2 = layoutInflater.inflate(R.layout.item_container_sp2, parent, false)
-                return View2Holder(View2)
-            }
+            val AView=layoutInflater.inflate(R.layout.item_container_sp1,parent,false)
+
+            //For Text
+            AView.SP1.setTextColor(if (viewType==seniorProject1) resources.getColor(R.color.SP1)
+            else
+                resources.getColor(R.color.SP2))
+
+            //For color bar
+            AView.color_bar.setBackgroundColor(if (viewType==seniorProject1) resources.getColor(R.color.SP1)
+            else
+                resources.getColor(R.color.SP2))
+
+            return AViewHolder(AView)
         }
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             val project = projects[position]
-            if (project.viewType == 1) {
-                (holder as ProjectFragment.View1Holder).bind(project)
-            } else {
-                (holder as ProjectFragment.View2Holder).bind(project)
-            }
+            (holder as AViewHolder).bind(project)
 
         }
 
@@ -137,14 +157,37 @@ class ProjectFragment: Fragment(){
 
         override fun getItemViewType(position: Int): Int {
             val project = projects[position]
-            return if (project.viewType == 1) {
+            return if (project.projType == 1) {
                 seniorProject1
             } else {
                 seniorProject2
             }
         }
 
+        fun setData(project: List<AdvisorProjectResponseItem>){
+            projects = project
+            notifyDataSetChanged()
+        }
+    }
 
+    companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment TestFragment.
+         */
+        // TODO: Rename and change types and number of parameters
+        @JvmStatic
+        fun newInstance(param1: String) =
+            ProjectFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, param1)
+                }
+            }
     }
 
 }
+

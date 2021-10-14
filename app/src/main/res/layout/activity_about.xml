@@ -69,13 +69,13 @@
 
         <TextView
             android:id="@+id/spdec1"
-            android:layout_width="351dp"
-            android:layout_height="124dp"
+            android:layout_width="354dp"
+            android:layout_height="137dp"
             android:layout_below="@+id/color_bar"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/cabin_bold"
-            android:text= "A culminating project (also known as a senior project, grad project or exit project), is a project that challenges high school seniors to demonstrate their academic knowledge in an experiential way (in most cases)."
+            android:text="An opportunity to demonstrate your skills and tangible work to your portfolio for your future career.  To succeed in senior projects, students need to exercise management skill as well as techincal skill. The students demonstrate their knowledge and skills in crafting the works."
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
 
@@ -114,7 +114,10 @@
             android:layout_marginLeft="25dp"
             android:layout_marginTop="211dp"
             android:fontFamily="@font/cabin_bold"
-            android:text= "A culminating project (also known as a senior project, grad project or exit project), is a project that challenges high school seniors to demonstrate their academic knowledge in an experiential way (in most cases)."
+            android:text= "External Exposure Requirement - the project must meet at least one of the following criteria
+                                                                     1. Used by real customers
+                                                                 2. Enter national-level competition
+                            3. Publish an academic research paper"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
 

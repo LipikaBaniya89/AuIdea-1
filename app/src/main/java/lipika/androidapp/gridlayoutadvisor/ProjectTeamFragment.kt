@@ -10,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import api.AdvisorProjectResponseItem
 import api.AllApi
 import api.ProjectResponse
 import de.hdodenhof.circleimageview.CircleImageView
@@ -23,7 +24,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 private const val ARG_PARAM1 = "param1"
 
 class ProjectTeamFragment:Fragment() {
-
     var param1=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +41,8 @@ class ProjectTeamFragment:Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_project_team,container, false)
+
+
         val retrofit: Retrofit =
             Retrofit.Builder().baseUrl("https://auidea.azurewebsites.net/").addConverterFactory(
                 GsonConverterFactory.create()
@@ -57,6 +59,7 @@ class ProjectTeamFragment:Fragment() {
                 if (projectResponse!=null) {
                     view.findViewById<TextView>(R.id.projDetail).text=projectResponse[0].groupMembers
                     view.findViewById<TextView>(R.id.projectAdvisorName).text=projectResponse[0].advisorName
+
                     Log.d("SPARK-API", "This is working")
                 }
             }
@@ -69,15 +72,6 @@ class ProjectTeamFragment:Fragment() {
 
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        //Advisor intent button
-        viewAdvisorButtonGrid.setOnClickListener{
-            val intent = Intent (getActivity(), SecondActivity::class.java)
-            getActivity()?.startActivity(intent)
-        }
-    }
 
     companion object {
         /**

@@ -37,6 +37,16 @@ class HomeFragment: Fragment() {
 
     private lateinit var listAdapter: ProjectAdapter
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode==Activity.RESULT_OK) {
+            if(data != null){
+                data.getStringArrayExtra("SAVED")?.let{(activity as HomeActivity).saveStorage.add(it)}
+            }
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -62,12 +62,12 @@
         android:id="@+id/projectAdvisor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/cabin_semibold"
         android:text="Project Advisor"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.165"
+        app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/projectAdvisorName" />
 
@@ -75,26 +75,14 @@
         android:id="@+id/projectAdvisorName"
         android:layout_width="216dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="44dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/cabin_semibold"
         android:text=" "
         android:textColor="#222222"
         android:textSize="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/viewAdvisorButtonGrid"
-        app:layout_constraintHorizontal_bias="0.684"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-    <ImageButton
-        android:id="@+id/viewAdvisorButtonGrid"
-        android:layout_width="43dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/circle_button"
-        android:src="@drawable/ic_action_rightarrow"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
