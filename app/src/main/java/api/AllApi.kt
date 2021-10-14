@@ -17,10 +17,9 @@ interface AllApi {
 
     @GET("api/recommendation/search")
     fun getHomeProject():Call<HomeProject>
-    
 
-    @GET("api/recommendation/advisordetailall")
-    fun getAdvisorProject(@Query("advisorNo") a_number: String):Call<AdvisorProjectResponse>
+    @GET("api/recommendation/advisordetail?")
+    fun getAdvisorProject(@Query("advisorId") a_number: String):Call<AdvisorProjectResponse>
 
     @GET("api/recommendation/advisorspecialty")
     fun getAdvisor():Call<AdvisorResponse>

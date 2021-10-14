@@ -54,34 +54,6 @@ class specialRecyclerFragment : Fragment() {
         param1.split("/").forEach{Log.d("12",it.toString())}
 
 
-//        val retrofit: Retrofit =
-//            Retrofit.Builder().baseUrl("https://auidea.azurewebsites.net/").addConverterFactory(
-//                GsonConverterFactory.create()
-//            ).build()
-//
-//        val Api: AllApi = retrofit.create(AllApi::class.java)
-//
-//        //Get Advisor Specialty
-//        val getAdvisorSpecialtyRequest: Call<AdvisorResponse> = Api.getAdvisor()
-//        getAdvisorSpecialtyRequest.enqueue(object : Callback<AdvisorResponse> {
-//
-//            override fun onResponse(
-//                call: Call<AdvisorResponse>,
-//                response: Response<AdvisorResponse>
-//            ) {
-//                var advisorSpecialtyResponse = response.body()
-//                if (advisorSpecialtyResponse != null) {
-//                    //specialAdapter.setData(advisorSpecialtyResponse.)
-//                    //Log.d("SPECIAL", advisorSpecialtyResponse.toString())
-//                    advisorSpecialtyResponse.forEach { Log.d("SPECIAL",it.toString()) }
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<AdvisorResponse>, t: Throwable) {
-//                Log.d("SPARK-API", "Failed to Request!")
-//            }
-//        })
-
     }
 
     private inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
