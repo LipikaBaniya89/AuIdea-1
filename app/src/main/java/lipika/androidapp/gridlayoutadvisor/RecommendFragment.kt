@@ -94,8 +94,14 @@ class RecommendFragment : Fragment() {
                 Log.d("SPARK-API", "Failed to Request!")
             }
         })
-
-
+    }
+    private fun getStudentId(): String {
+        val parentActivity = requireActivity()
+        if (parentActivity is HomeActivity) {
+            val studentId = parentActivity.studentId
+            return studentId
+        }
+        return ""
     }
 
 

@@ -9,10 +9,10 @@ interface AllApi {
     fun getProject(@Query("projectNo") p_number:String):Call<ProjectResponse>
 
     @GET("api/recommendation/home")
-    fun getRecommendation(@Query("studentId") id_int:String):Call<Recommendation>
+    fun getRecommendation(@Query("studentId") student_id:String):Call<Recommendation>
 
-    @GET("api/recommendation/recommendationall")
-    fun getRecommendation():Call<Recommendation>
+    //@GET("api/recommendation/recommendationall")
+    //fun getRecommendation():Call<Recommendation>
 
     @GET("api/recommendation/search")
     fun getHomeProject():Call<HomeProject>

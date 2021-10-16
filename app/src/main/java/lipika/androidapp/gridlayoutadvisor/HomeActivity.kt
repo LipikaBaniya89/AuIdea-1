@@ -62,6 +62,10 @@ var saveStorage = mutableSetOf<Array<String>>()
     private var filterList:List<HomeProjectItem> = emptyList()
     private var saveFilter= arrayOf("-1","-1")
 
+    val studentId: String by lazy {
+        intent?.extras?.getString("studentId", "") ?: ""
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode== FILTER_CODE) {

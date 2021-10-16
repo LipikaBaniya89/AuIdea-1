@@ -59,7 +59,14 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        startActivity(Intent(this, HomeActivity::class.java))
+        var id_int = user.email?.substring(1, 8)?.toString()
+        val homeIntent = Intent(this, HomeActivity::class.java).apply {
+            putExtra("studentId", id_int)
+        }
+
+        startActivity(homeIntent)
+
+        //startActivity(Intent(this, HomeActivity::class.java))
         finish()
     }
 

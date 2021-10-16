@@ -33,9 +33,9 @@ const val FILTER_CODE_FRAGMENT=110
 private const val REQUEST_CODE_SECONDACT=101
 
 class HomeFragment: Fragment() {
-    var saveStorage = mutableListOf<Array<String>>()
 
     private lateinit var listAdapter: ProjectAdapter
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -116,6 +116,7 @@ class HomeFragment: Fragment() {
                 intent.putExtra("p_number", project.projectNo.toString())
                 intent.putExtra("TITLE", project.projectTitle.toString())
                 intent.putExtra("SEM", project.semester.toString())
+                intent.putExtra("GRP",project.groupName)
                 intent.putExtra("TYPE", project.projectType.toString())
                 Log.d("SPARK-API","Working ${project.projectNo}")
                 startActivityForResult(intent, Activity.RESULT_OK)
