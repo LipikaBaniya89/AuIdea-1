@@ -7,8 +7,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_SP1"
-        android:layout_width="397dp"
-        android:layout_height="860dp"
+        android:layout_width="395dp"
+        android:layout_height="707dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

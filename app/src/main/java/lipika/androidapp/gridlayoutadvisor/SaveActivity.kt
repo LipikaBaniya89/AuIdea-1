@@ -56,7 +56,7 @@ class SaveActivity : AppCompatActivity() {
                 intent.putExtra("GRP",project[1])
                 intent.putExtra("SEM", project[2])
                 intent.putExtra("TYPE", project[3])
-                Log.d("PINKY","Working ${project[0].toString()}")
+                Log.d("PINKY","Working ${project[1].toString()}")
                 startActivityForResult(intent, REQUEST_CODE)
             }
         }

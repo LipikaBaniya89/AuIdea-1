@@ -118,6 +118,7 @@ class ProjectFragment: Fragment(){
                 intent.putExtra("GRP", project.projTeam)
                 intent.putExtra("SEM", project.projSemester)
                 intent.putExtra("TYPE", project.projType)
+                intent.putExtra("EMPTY",false)
                 startActivityForResult(intent, Activity.RESULT_OK)
             }
         }

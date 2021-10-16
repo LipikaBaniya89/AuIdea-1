@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3FBFBFB">
+    android:background="#E17C7C7C">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/profileCard"
@@ -20,8 +20,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/userProfileImg"
-            android:layout_width="112dp"
-            android:layout_height="105dp"
+            android:layout_width="96dp"
+            android:layout_height="88dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="35dp"
             android:layout_weight="1"
@@ -33,17 +33,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="130dp"
             android:text="ABCD EFGH"
             android:textColor="@color/menuColor"
             android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/userID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="170dp"
+            android:text="u000000@au.edu"
+            android:textColor="#801B1B1B"
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/userEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="190dp"
+            android:layout_marginTop="195dp"
             android:text="u000000@au.edu"
             android:textColor="#801B1B1B"
             android:textSize="15dp" />
@@ -53,7 +63,7 @@
             android:layout_width="35dp"
             android:layout_height="8dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="220dp"
+            android:layout_marginTop="230dp"
             android:background="@drawable/gradient_drawable" />
 
         <Button

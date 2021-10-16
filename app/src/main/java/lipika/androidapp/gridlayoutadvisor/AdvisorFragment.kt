@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,8 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.advisor_grid.*
 import kotlinx.android.synthetic.main.advisor_grid.view.*
+import kotlinx.android.synthetic.main.project_detail.*
+import kotlinx.android.synthetic.main.project_detail.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

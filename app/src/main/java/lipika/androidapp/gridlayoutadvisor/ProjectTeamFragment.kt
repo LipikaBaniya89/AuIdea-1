@@ -32,7 +32,6 @@ class ProjectTeamFragment:Fragment() {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1).toString()
         }
-
     }
 
     override fun onCreateView(
@@ -57,8 +56,9 @@ class ProjectTeamFragment:Fragment() {
             override fun onResponse(call: Call<ProjectResponse>, response: Response<ProjectResponse>) {
                 var projectResponse = response.body()
                 if (projectResponse!=null) {
-                    view.findViewById<TextView>(R.id.projDetail).text=projectResponse[0].groupMembers
-                    view.findViewById<TextView>(R.id.projectAdvisorName).text=projectResponse[0].advisorName
+                    view.findViewById<TextView>(R.id.projDetail).text = projectResponse[0].groupMembers.split(",").map { it.trim() }.joinToString("\n")
+                    view.findViewById<TextView>(R.id.projectAdvisorName).text = projectResponse[0].advisorName
+
 
                     Log.d("SPARK-API", "This is working")
                 }
@@ -69,7 +69,6 @@ class ProjectTeamFragment:Fragment() {
             }
         })
         return view
-
     }
 
 

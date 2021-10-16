@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:textAlignment="center"
-    android:background="@color/white"
+    android:background="#FBFBFB"
     tools:context=".SecondActivity">
 
 
@@ -101,8 +101,8 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerViewAdvisor"
         android:name="lipika.androidapp.gridlayoutadvisor.specialRecyclerFragment"
-        android:layout_width="404dp"
-        android:layout_height="561dp"
+        android:layout_width="399dp"
+        android:layout_height="541dp"
         android:layout_marginStart="1dp"
         android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"

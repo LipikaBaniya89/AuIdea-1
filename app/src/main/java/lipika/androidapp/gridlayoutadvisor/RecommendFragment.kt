@@ -1,6 +1,7 @@
 package lipika.androidapp.gridlayoutadvisor
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -14,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import api.AllApi
 import api.Recommendation
 import api.RecommendationItem
-import kotlinx.android.synthetic.main.activity_recommend.saveRecyclerView
+import kotlinx.android.synthetic.main.activity_recommend.*
 import kotlinx.android.synthetic.main.item_container_sp1.view.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,8 +25,19 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 private const val REQUEST_CODE=102
 private const val REQUEST_CODE1=103
+private const val ARG_PARAM1 = "param1"
 
 class RecommendFragment : Fragment() {
+
+    var param1=""
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        arguments?.let {
+            param1 = it.getString(ARG_PARAM1).toString()
+        }
+    }
 
     private var list: Recommendation = Recommendation()
     private lateinit var listAdapter: ProjectAdapter
@@ -56,22 +68,20 @@ class RecommendFragment : Fragment() {
         listAdapter = ProjectAdapter(list)
         saveRecyclerView.adapter = listAdapter
 
-
         val retrofit: Retrofit =
             Retrofit.Builder().baseUrl("https://auidea.azurewebsites.net/").addConverterFactory(
                 GsonConverterFactory.create()
             ).build()
 
         val Api: AllApi = retrofit.create(AllApi::class.java)
+        val stdID = activity?.getPreferences(Context.MODE_PRIVATE)?.getInt(LoginActivity.PASSKEY,-1)
+
 
 //        Get Recommendation HomeScreen
-        val getRecommendationRequest: Call<Recommendation> = Api.getRecommendation()
+        val getRecommendationRequest: Call<Recommendation> = Api.getRecommendation(stdID.toString())
         getRecommendationRequest.enqueue(object : Callback<Recommendation> {
 
-            override fun onResponse(
-                call: Call<Recommendation>,
-                response: Response<Recommendation>
-            ) {
+            override fun onResponse(call: Call<Recommendation>, response: Response<Recommendation>) {
                 var recommendationResponse = response.body()
                 if (recommendationResponse != null) {
                     listAdapter.setData(recommendationResponse)
@@ -79,10 +89,12 @@ class RecommendFragment : Fragment() {
                 }
             }
 
+
             override fun onFailure(call: Call<Recommendation>, t: Throwable) {
                 Log.d("SPARK-API", "Failed to Request!")
             }
         })
+
 
     }
 
@@ -158,6 +170,25 @@ class RecommendFragment : Fragment() {
             notifyDataSetChanged()
         }
 
+    }
+
+    companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment TestFragment.
+         */
+        // TODO: Rename and change types and number of parameters
+        @JvmStatic
+        fun newInstance(param1: String) =
+            RecommendFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, param1)
+                }
+            }
     }
 
 }

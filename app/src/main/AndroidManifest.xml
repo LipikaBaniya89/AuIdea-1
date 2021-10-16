@@ -16,6 +16,7 @@
         <activity android:name=".AboutActivity" />
         <activity android:name=".SecondActivity" />
         <activity android:name=".FilterActivity" />
+        <activity android:name=".DownloadActivity" />
         <activity android:name=".ProfileActivity"/>
 <!--        <activity android:name=".LoginActivity" />-->
         <activity android:name=".HomeActivity"/>

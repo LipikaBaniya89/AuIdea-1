@@ -2,7 +2,10 @@ package lipika.androidapp.gridlayoutadvisor
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isInvisible
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.advisor_information.*
 import kotlinx.android.synthetic.main.project_detail.*
@@ -24,6 +27,7 @@ class SecondActivity : AppCompatActivity() {
             .replace(R.id.fragmentContainerViewAdvisor, specialty_fragment).commit()
         specButton.setTextColor(resources.getColor(R.color.menuColor))
         projButton.setTextColor(resources.getColor(R.color.colorPrimaryLight))
+
 
         advisorNameInfo.text = name
         Picasso.get().load(image).into(imageAdvisor)

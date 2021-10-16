@@ -47,7 +47,7 @@ const val FILTER_CODE=110
 private lateinit var auth: FirebaseAuth
 
 class HomeActivity : AppCompatActivity(){
-var saveStorage = mutableListOf<Array<String>>()
+var saveStorage = mutableSetOf<Array<String>>()
 
     private companion object{
         const val TAG = "LoginActivity"
@@ -75,7 +75,9 @@ var saveStorage = mutableListOf<Array<String>>()
 
         if (requestCode == REQUEST_CODE_SECONDACT){
             if(data != null){
-                data.getStringArrayExtra("SAVED")?.let{saveStorage.add(it)}
+                data.getStringArrayExtra("SAVED")?.let{
+                    if (!saveStorage.map { it[0] }.contains(it[0]))
+                    saveStorage.add(it)}
             }
         }
     }

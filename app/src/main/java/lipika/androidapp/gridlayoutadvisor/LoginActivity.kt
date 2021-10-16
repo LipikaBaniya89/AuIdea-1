@@ -19,9 +19,10 @@ import kotlinx.android.synthetic.main.profile_popup.*
 
 class LoginActivity : AppCompatActivity() {
 
-    private companion object{
+    companion object{
         private const val TAG = "LoginActivity"
         private const val RC_GOOGLE_SIGN_IN = 4926
+        val PASSKEY="id"
     }
 
     private lateinit var auth: FirebaseAuth
@@ -97,4 +98,5 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
     }
+
 }
