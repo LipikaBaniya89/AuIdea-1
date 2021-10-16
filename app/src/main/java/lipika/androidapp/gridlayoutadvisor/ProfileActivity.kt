@@ -28,7 +28,6 @@ class ProfileActivity: AppCompatActivity() {
 
         auth = Firebase.auth
 
-        //Log.i(HomeActivity.TAG, "Logout")
         auth.signOut()
         val logoutIntent = Intent(this, LoginActivity::class.java)
         logoutIntent.flags =
@@ -36,20 +35,6 @@ class ProfileActivity: AppCompatActivity() {
         startActivity(logoutIntent)
         finish()
 
-
-//        val signInAccount = GoogleSignIn.getLastSignedInAccount(applicationContext)
-//        if (signInAccount != null){
-//            val id = userID
-//            var id_string = signInAccount.email
-//            var id_int = (id_string.substring(1,8)).toInt()
-//
-//            id.setText(id_int.toString())
-//            val projectNumber = intent.getStringExtra("p_number")
-//        }
-//
-//        val idNo = intent.getStringExtra("p_number")
-//
-//        val uniqueId= ProjectDesFragment.newInstance(idNo.toString())
 
     }
 }

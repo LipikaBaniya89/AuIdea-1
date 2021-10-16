@@ -32,14 +32,12 @@ class ProfileFragment:Fragment() {
         if (signInAccount != null){
 
             val name =  view.userName
-           // val email = view.userEmail
             val image = view.userProfileImg
             val id = view.userID
 
             var id_string = signInAccount.email
             var id_int = (id_string.substring(1,8)).toInt()
             name.setText(signInAccount.displayName)
-            //email.setText(signInAccount.email)
             Picasso.get().load(signInAccount.photoUrl).into(image)
             id.setText(id_int.toString())
 
