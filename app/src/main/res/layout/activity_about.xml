@@ -205,6 +205,7 @@
             class = "lipika.androidapp.gridlayoutadvisor.PreFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
             android:layout_alignTop="@+id/linearLayout"
             android:layout_marginTop="60dp"
             tools:layout="@layout/fragment_pre" />

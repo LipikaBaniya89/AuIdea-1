@@ -101,8 +101,8 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerViewAdvisor"
         android:name="lipika.androidapp.gridlayoutadvisor.specialRecyclerFragment"
-        android:layout_width="399dp"
-        android:layout_height="541dp"
+        android:layout_width="390dp"
+        android:layout_height="543dp"
         android:layout_marginStart="1dp"
         android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
