@@ -10,7 +10,7 @@ This application aims to offer freshmen with all of this essential information i
 The application was developed on Android Studio using Kotlin language. It has connections to ASP.Net, SQL Server and Firebase. The features of the application include :
 
 User login and sign up
-> A list of projects that lead to its full information and project report
-> A filter feature on the home screen
-> A saved / favourites feature
+* A list of projects that lead to its full information and project report
+* A filter feature on the home screen
+* A saved / favourites feature
 
