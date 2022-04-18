@@ -18,9 +18,8 @@ User login and sign up
 The application's colors and concept are inspired by the purple brand color of the faculty member for whom it was created. The application only has one theme, which is light. It was created using gestalt concepts to organize the contents in an aesthetically beautiful and understandable manner. Adobe XD was used to create it.
 
 * Login Screen and User Profile Screen
+![image](https://user-images.githubusercontent.com/89762072/163792019-36b7877e-1aeb-4156-b6e0-8ee628f099bd.png)
 
-
-![14933173![149332177-04298430-3046-4195-8248-45699ce3a697](https://user-images.githubusercontent.com/89762072/163791087-fb33fe1b-ef03-4a0c-b683-6829dad94070.png)
 
 
 * Project List and Project Detail Screen
