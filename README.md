@@ -45,9 +45,7 @@ The application's colors and concept are inspired by the purple brand color of t
 
 * About Senior Project Screen
 
-![image](https://user-images.githubusercontent.com/89762072/163791513-8b463707-d541-4693-829c-a04ea69a33ea.png)   
-
-![image](https://user-images.githubusercontent.com/89762072/163791545-08534558-b3d1-49b6-9807-0279d76e4b5b.png)
+![image](https://user-images.githubusercontent.com/89762072/163791513-8b463707-d541-4693-829c-a04ea69a33ea.png)       ![image](https://user-images.githubusercontent.com/89762072/163791545-08534558-b3d1-49b6-9807-0279d76e4b5b.png)
 
 
 
