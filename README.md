@@ -21,16 +21,11 @@ The application's colors and concept are inspired by the purple brand color of t
 
 
 ![14933173![149332177-04298430-3046-4195-8248-45699ce3a697](https://user-images.githubusercontent.com/89762072/163791087-fb33fe1b-ef03-4a0c-b683-6829dad94070.png)
-5-d8d2d1f1-2c00-4fcb-8283-b62ca2931e31](https://user-images.githubusercontent.com/89762072/163791067-7d317202-75c6-4b83-a70b-a8119e7da243.png)
 
 
-* Project List and Project Detail Screem
-![image](https://user-images.githubusercontent.com/89762072/163791189-144c4cdb-b50e-401b-b578-029dfc4dbe69.png)
-
-![image](https://user-images.githubusercontent.com/89762072/163791226-cf1b4b49-3e35-4e45-9b37-bb2036c2181d.png)
-
+* Project List and Project Detail Screen
+![image](https://user-images.githubusercontent.com/89762072/163791189-144c4cdb-b50e-401b-b578-029dfc4dbe69.png) ![image](https://user-images.githubusercontent.com/89762072/163791226-cf1b4b49-3e35-4e45-9b37-bb2036c2181d.png) 
 ![image](https://user-images.githubusercontent.com/89762072/163791243-eeeaf482-38ae-4605-8572-13e63b984aad.png)
-
 
 * Project Filter
 
@@ -41,20 +36,17 @@ The application's colors and concept are inspired by the purple brand color of t
 
 ![image](https://user-images.githubusercontent.com/89762072/163791365-b58cbc8f-0f3e-4f42-8b15-059a1e2d71d7.png)
 
+
 * Professor's Detail Screen
 
-![image](https://user-images.githubusercontent.com/89762072/163791421-6ebc64ba-8185-4e4e-b9b6-9386880d7a58.png)
-
-![image](https://user-images.githubusercontent.com/89762072/163791442-3bc011b5-fe3b-41ae-877a-7939b1f7b9d9.png)
-
+![image](https://user-images.githubusercontent.com/89762072/163791421-6ebc64ba-8185-4e4e-b9b6-9386880d7a58.png)  ![image](https://user-images.githubusercontent.com/89762072/163791442-3bc011b5-fe3b-41ae-877a-7939b1f7b9d9.png)  
 ![image](https://user-images.githubusercontent.com/89762072/163791464-d9bacdc4-fed8-4821-87b4-4205b5310080.png)
-
 
 * About Senior Project Screen
 
-![image](https://user-images.githubusercontent.com/89762072/163791513-8b463707-d541-4693-829c-a04ea69a33ea.png)
+![image](https://user-images.githubusercontent.com/89762072/163791513-8b463707-d541-4693-829c-a04ea69a33ea.png)   ![image](https://user-images.githubusercontent.com/89762072/163791545-08534558-b3d1-49b6-9807-0279d76e4b5b.png)
 
-![image](https://user-images.githubusercontent.com/89762072/163791545-08534558-b3d1-49b6-9807-0279d76e4b5b.png)
+
 
 
 
